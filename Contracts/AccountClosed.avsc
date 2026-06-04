@@ -1,0 +1,22 @@
+﻿{
+  "type": "record",
+  "name": "AccountClosed",
+  "namespace": "DotNet.Kafka.MultiEventTopic",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string"
+    },
+    {
+      "name": "accountId",
+      "type": "string"
+    },
+    {
+      "name": "occurredAt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    }
+  ]
+}
