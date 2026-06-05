@@ -4,6 +4,6 @@
   </Folder>
   <Project Path="TopicName/TopicName.csproj" />
   <Project Path="TopicNameSpecificRecord/TopicNameSpecificRecord.csproj" />
-  <Project Path="TopicNameUnion/TopicNameUnion.csproj" />
   <Project Path="TopicRecordName/TopicRecordName.csproj" />
+  <Project Path="UnionGenericRecord/UnionGenericRecord.csproj" />
 </Solution>

@@ -2,7 +2,7 @@
 
 namespace TopicNameUnion;
 
-public static class AccountData
+public static class Messages
 {
     public static IEnumerable<GenericRecord> Records()
     {
