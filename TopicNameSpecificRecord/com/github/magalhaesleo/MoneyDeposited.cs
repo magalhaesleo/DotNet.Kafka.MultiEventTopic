@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace DotNet.Kafka.MultiEventTopic
+namespace com.github.magalhaesleo
 {
 	using System;
 	using System.Collections.Generic;
@@ -14,20 +14,19 @@ namespace DotNet.Kafka.MultiEventTopic
 	using global::Avro.Specific;
 	
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("avrogen", "1.12.1+9110c693767c1dde2665b2b57939333478b12036")]
-	public partial class AccountUnblocked : global::Avro.Specific.ISpecificRecord
+	public partial class MoneyDeposited : global::Avro.Specific.ISpecificRecord
 	{
-		public static global::Avro.Schema _SCHEMA = global::Avro.Schema.Parse("{\"type\":\"record\",\"name\":\"AccountUnblocked\",\"namespace\":\"DotNet.Kafka.MultiEventTo" +
-				"pic\",\"fields\":[{\"name\":\"eventId\",\"type\":\"string\"},{\"name\":\"accountId\",\"type\":\"st" +
-				"ring\"},{\"name\":\"occurredAt\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-milli" +
-				"s\"}}]}");
+		public static global::Avro.Schema _SCHEMA = global::Avro.Schema.Parse(@"{""type"":""record"",""name"":""MoneyDeposited"",""namespace"":""com.github.magalhaesleo"",""fields"":[{""name"":""eventId"",""type"":""string""},{""name"":""accountId"",""type"":""string""},{""name"":""transactionId"",""type"":""string""},{""name"":""amount"",""type"":""double""},{""name"":""occurredAt"",""type"":{""type"":""long"",""logicalType"":""timestamp-millis""}}]}");
 		private string _eventId;
 		private string _accountId;
+		private string _transactionId;
+		private double _amount;
 		private System.DateTime _occurredAt;
 		public virtual global::Avro.Schema Schema
 		{
 			get
 			{
-				return AccountUnblocked._SCHEMA;
+				return MoneyDeposited._SCHEMA;
 			}
 		}
 		public string eventId
@@ -52,6 +51,28 @@ namespace DotNet.Kafka.MultiEventTopic
 				this._accountId = value;
 			}
 		}
+		public string transactionId
+		{
+			get
+			{
+				return this._transactionId;
+			}
+			set
+			{
+				this._transactionId = value;
+			}
+		}
+		public double amount
+		{
+			get
+			{
+				return this._amount;
+			}
+			set
+			{
+				this._amount = value;
+			}
+		}
 		public System.DateTime occurredAt
 		{
 			get
@@ -69,7 +90,9 @@ namespace DotNet.Kafka.MultiEventTopic
 			{
 			case 0: return this.eventId;
 			case 1: return this.accountId;
-			case 2: return this.occurredAt;
+			case 2: return this.transactionId;
+			case 3: return this.amount;
+			case 4: return this.occurredAt;
 			default: throw new global::Avro.AvroRuntimeException("Bad index " + fieldPos + " in Get()");
 			};
 		}
@@ -79,7 +102,9 @@ namespace DotNet.Kafka.MultiEventTopic
 			{
 			case 0: this.eventId = (System.String)fieldValue; break;
 			case 1: this.accountId = (System.String)fieldValue; break;
-			case 2: this.occurredAt = (System.DateTime)fieldValue; break;
+			case 2: this.transactionId = (System.String)fieldValue; break;
+			case 3: this.amount = (System.Double)fieldValue; break;
+			case 4: this.occurredAt = (System.DateTime)fieldValue; break;
 			default: throw new global::Avro.AvroRuntimeException("Bad index " + fieldPos + " in Put()");
 			};
 		}

@@ -1,7 +1,7 @@
 ﻿{
   "type": "record",
-  "name": "AccountBlocked",
-  "namespace": "DotNet.Kafka.MultiEventTopic",
+  "name": "MoneyDeposited",
+  "namespace": "com.github.magalhaesleo",
   "fields": [
     {
       "name": "eventId",
@@ -12,8 +12,12 @@
       "type": "string"
     },
     {
-      "name": "reason",
+      "name": "transactionId",
       "type": "string"
+    },
+    {
+      "name": "amount",
+      "type": "double"
     },
     {
       "name": "occurredAt",

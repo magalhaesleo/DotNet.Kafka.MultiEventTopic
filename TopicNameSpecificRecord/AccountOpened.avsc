@@ -1,7 +1,7 @@
 ﻿{
   "type": "record",
-  "name": "AccountClosed",
-  "namespace": "DotNet.Kafka.MultiEventTopic",
+  "name": "AccountOpened",
+  "namespace": "com.github.magalhaesleo",
   "fields": [
     {
       "name": "eventId",
@@ -12,7 +12,11 @@
       "type": "string"
     },
     {
-      "name": "occurredAt",
+      "name": "ownerName",
+      "type": "string"
+    },
+    {
+      "name": "openedAt",
       "type": {
         "type": "long",
         "logicalType": "timestamp-millis"

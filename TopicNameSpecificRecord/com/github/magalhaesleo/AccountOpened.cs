@@ -5,7 +5,7 @@
 //    is regenerated
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace DotNet.Kafka.MultiEventTopic
+namespace com.github.magalhaesleo
 {
 	using System;
 	using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace DotNet.Kafka.MultiEventTopic
 	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("avrogen", "1.12.1+9110c693767c1dde2665b2b57939333478b12036")]
 	public partial class AccountOpened : global::Avro.Specific.ISpecificRecord
 	{
-		public static global::Avro.Schema _SCHEMA = global::Avro.Schema.Parse(@"{""type"":""record"",""name"":""AccountOpened"",""namespace"":""DotNet.Kafka.MultiEventTopic"",""fields"":[{""name"":""eventId"",""type"":""string""},{""name"":""accountId"",""type"":""string""},{""name"":""ownerName"",""type"":""string""},{""name"":""openedAt"",""type"":{""type"":""long"",""logicalType"":""timestamp-millis""}}]}");
+		public static global::Avro.Schema _SCHEMA = global::Avro.Schema.Parse(@"{""type"":""record"",""name"":""AccountOpened"",""namespace"":""com.github.magalhaesleo"",""fields"":[{""name"":""eventId"",""type"":""string""},{""name"":""accountId"",""type"":""string""},{""name"":""ownerName"",""type"":""string""},{""name"":""openedAt"",""type"":{""type"":""long"",""logicalType"":""timestamp-millis""}}]}");
 		private string _eventId;
 		private string _accountId;
 		private string _ownerName;

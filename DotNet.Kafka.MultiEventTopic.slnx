@@ -1,7 +1,9 @@
 <Solution>
-  <Project Path="Consumer/Consumer.csproj" />
-  <Project Path="Contracts/Contracts.csproj" />
-  <Project Path="Producer/Producer.csproj" />
+  <Folder Name="/Solution Itens/">
+    <File Path="compose.yaml" />
+  </Folder>
   <Project Path="TopicName/TopicName.csproj" />
+  <Project Path="TopicNameSpecificRecord/TopicNameSpecificRecord.csproj" />
+  <Project Path="TopicNameUnion/TopicNameUnion.csproj" />
   <Project Path="TopicRecordName/TopicRecordName.csproj" />
 </Solution>
