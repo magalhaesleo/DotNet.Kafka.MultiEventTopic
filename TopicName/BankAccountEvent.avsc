@@ -1,0 +1,72 @@
+﻿{
+  "type": "record",
+  "name": "BankAccountEvent",
+  "namespace": "DotNet.Kafka.MultiEventTopic",
+  "fields": [
+    {
+      "name": "accountId",
+      "type": "string"
+    },
+    {
+      "name": "operation",
+      "type": [
+        {
+          "type": "record",
+          "name": "AccountOpened",
+          "namespace": "DotNet.Kafka.MultiEventTopic",
+          "fields": [
+            {
+              "name": "eventId",
+              "type": "string"
+            },
+            {
+              "name": "accountId",
+              "type": "string"
+            },
+            {
+              "name": "ownerName",
+              "type": "string"
+            },
+            {
+              "name": "openedAt",
+              "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+              }
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "MoneyDeposited",
+          "namespace": "DotNet.Kafka.MultiEventTopic",
+          "fields": [
+            {
+              "name": "eventId",
+              "type": "string"
+            },
+            {
+              "name": "accountId",
+              "type": "string"
+            },
+            {
+              "name": "transactionId",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": "double"
+            },
+            {
+              "name": "occurredAt",
+              "type": {
+                "type": "long",
+                "logicalType": "timestamp-millis"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

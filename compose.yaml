@@ -1,0 +1,66 @@
+services:
+    kafka:
+      restart: unless-stopped
+      image: confluentinc/cp-kafka:8.1.3
+      hostname: kafka
+      container_name: kafka
+      ports:
+        - 9092:9092
+        - 9093:9093
+      environment:
+        # KRaft Specific Settings
+        KAFKA_NODE_ID: 1
+        KAFKA_PROCESS_ROLES: 'broker,controller'
+        KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:9093'
+
+        # Listeners Configuration
+        KAFKA_LISTENERS: 'PLAINTEXT://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9092'
+        KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,EXTERNAL://localhost:9092'
+        KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT'
+        KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+        KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+
+        # Required Cluster ID for KRaft
+        CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+
+        # Topic Settings for Single Node Setup
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+        KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+        KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+        KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+
+      healthcheck:
+        test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+        interval: 15s
+        timeout: 10s
+        retries: 5
+
+    schema-registry:
+      restart: unless-stopped
+      image: confluentinc/cp-schema-registry:7.4.1
+      hostname: schema-registry
+      container_name: schema-registry
+      depends_on:
+        kafka:
+          condition: service_healthy
+      ports:
+        - "8081:8081"
+      environment:
+        SCHEMA_REGISTRY_HOST_NAME: schema-registry
+        SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      healthcheck:
+        test: curl --output /dev/null --silent --head --fail http://schema-registry:8081/subjects
+        interval: 15s
+        timeout: 10s
+        retries: 5
+
+    kafka-ui:
+      image: provectuslabs/kafka-ui:latest
+      container_name: kafka-ui
+      ports:
+        - "8080:8080"
+      environment:
+        DYNAMIC_CONFIG_ENABLED: 'true'
+        KAFKA_CLUSTERS_0_NAME: local
+        KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+        KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081

@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Itens/">
+    <File Path="compose.yaml" />
+  </Folder>
+  <Project Path="TopicName/TopicName.csproj" />
+  <Project Path="TopicRecordName/TopicRecordName.csproj" />
+  <Project Path="UnionGenericRecord/UnionGenericRecord.csproj" />
+</Solution>
