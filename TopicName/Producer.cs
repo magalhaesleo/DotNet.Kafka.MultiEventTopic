@@ -7,16 +7,14 @@ namespace TopicName;
 
 public static class Producer
 {
-    public static async Task Produce(Settings settings)
+    public static async Task Produce(
+        string topicName,
+        string bootstrapServers,
+        string schemaRegistryUrl)
     {
-        var config = new ProducerConfig { BootstrapServers = settings.BootstrapServers, LingerMs = 0 };
-        
-        var schemaRegistryConfig = new SchemaRegistryConfig
-        {
-            Url = settings.SchemaRegistryUrl
-        };
-
-        var valueSerializerConfiguration = new AvroSerializerConfig
+        ProducerConfig config = new() { BootstrapServers = bootstrapServers, LingerMs = 0 };
+        SchemaRegistryConfig schemaRegistryConfig = new() { Url = schemaRegistryUrl };
+        AvroSerializerConfig valueSerializerConfiguration = new()
         {
             SubjectNameStrategy = SubjectNameStrategy.Topic,
             AutoRegisterSchemas = true,
@@ -27,12 +25,12 @@ public static class Producer
         using var producer = new ProducerBuilder<string, BankAccountEvent>(config)
             .SetValueSerializer(new AvroSerializer<BankAccountEvent>(schemaRegistry, valueSerializerConfiguration))
             .Build();
-        
+
         try
         {
             foreach (var message in Messages.Events())
             {
-                var dr = await producer.ProduceAsync(settings.TopicName, message);
+                var dr = await producer.ProduceAsync(topicName, message);
                 Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
             }
         }

@@ -15,10 +15,12 @@ public static class Messages
             Value = new BankAccountEvent()
             {
                 accountId = accountId,
-                operation = new DepositOperation
+                operation = new AccountOpened()
                 {
-                    amount = 100,
-                    source = "bank",
+                    accountId = accountId,
+                    ownerName = "leonardo",
+                    openedAt = DateTime.UtcNow,
+                    eventId = Guid.NewGuid().ToString()
                 }
             }
         };
@@ -29,10 +31,13 @@ public static class Messages
             Value = new BankAccountEvent()
             {
                 accountId = accountId,
-                operation = new TransferOperation()
+                operation = new MoneyDeposited
                 {
+                    accountId = accountId,
                     amount = 100,
-                    destinationAccountId = Guid.NewGuid().ToString()
+                    eventId = Guid.NewGuid().ToString(),
+                    occurredAt = DateTime.UtcNow,
+                    transactionId = Guid.NewGuid().ToString()
                 }
             }
         };

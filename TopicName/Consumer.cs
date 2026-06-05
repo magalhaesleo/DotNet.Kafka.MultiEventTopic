@@ -8,29 +8,26 @@ namespace TopicName;
 
 public static class Consumer
 {
-    public static void Consume(Settings settings, CancellationToken cancellationToken)
-    {  
-        var config = new ConsumerConfig
+    public static void Consume(
+        string topicName,
+        string bootstrapServers,
+        string schemaRegistryUrl,
+        CancellationToken cancellationToken)
+    {
+        ConsumerConfig config = new()
         {
-            BootstrapServers = settings.BootstrapServers,
+            BootstrapServers = bootstrapServers,
             GroupId = Guid.NewGuid().ToString(),
             AutoOffsetReset = AutoOffsetReset.Earliest
         };
-        
-        var avroDeserializerConfig = new AvroDeserializerConfig()
-        {
-            SubjectNameStrategy = SubjectNameStrategy.Topic
-        };
-        var schemaRegistryConfig = new SchemaRegistryConfig
-        {
-            Url = settings.SchemaRegistryUrl,
-        };
+        AvroDeserializerConfig avroDeserializerConfig = new() { SubjectNameStrategy = SubjectNameStrategy.Topic };
+        SchemaRegistryConfig schemaRegistryConfig = new() { Url = schemaRegistryUrl };
         using var schemaRegistry = new CachedSchemaRegistryClient(schemaRegistryConfig);
         using var consumer = new ConsumerBuilder<string, BankAccountEvent>(config)
             .SetValueDeserializer(new AvroDeserializer<BankAccountEvent>(schemaRegistry, avroDeserializerConfig).AsSyncOverAsync())
             .Build();
         
-        consumer.Subscribe(settings.TopicName);
+        consumer.Subscribe(topicName);
         
         while (!cancellationToken.IsCancellationRequested)
         {
@@ -43,12 +40,12 @@ public static class Consumer
                 var bankAccountEvent = consumeResult.Message.Value;
                 switch (bankAccountEvent.operation)
                 {
-                    case DepositOperation depositOperation:
-                        Console.WriteLine($"Deposited {depositOperation.amount} to {bankAccountEvent.accountId}");
+                    case AccountOpened accountOpened:
+                        Console.WriteLine($"AccountOpened {accountOpened.accountId} Owner: {accountOpened.ownerName}");
                         break;
-                    case TransferOperation transferOperation:
+                    case MoneyDeposited moneyDeposited:
                         Console.WriteLine(
-                            $"Transferred {transferOperation.amount} from {bankAccountEvent.accountId} to {transferOperation.destinationAccountId}");
+                            $"MoneyDeposited {moneyDeposited.amount} to: {moneyDeposited.accountId}");
                         break;
                     default:
                         Console.WriteLine("Unknown operation");

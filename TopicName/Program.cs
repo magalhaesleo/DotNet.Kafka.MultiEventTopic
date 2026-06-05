@@ -4,14 +4,16 @@ public static class Program
 {
     public static async Task Main(string[] args)
     {
-        var settings = new Settings(
-            BootstrapServers: "localhost:9092",
-            SchemaRegistryUrl: "http://localhost:8081",
-            TopicName: "account-events-topic-name-strategy"
-        );
+        const string bootstrapServers = "localhost:9092";
+        const string schemaRegistryUrl = "http://localhost:8081";
+        const string topicName = "account-events-topic-name-strategy";
 
         Console.WriteLine("Sending messages...");
-        await Producer.Produce(settings);
+        await Producer.Produce(
+            topicName,
+            bootstrapServers,
+            schemaRegistryUrl
+        );
         
         using var cts = new CancellationTokenSource();
         Console.CancelKeyPress += (_, e) =>
@@ -27,6 +29,10 @@ public static class Program
         };
 
         Console.WriteLine("Consuming messages...");
-        Consumer.Consume(settings, cts.Token);
+        Consumer.Consume(topicName,
+            bootstrapServers,
+            schemaRegistryUrl,
+            cts.Token
+        );
     }
 }
