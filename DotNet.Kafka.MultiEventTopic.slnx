@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Itens/">
+    <File Path="compose.yaml" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="EmbeddedUnionType/EmbeddedUnionType.csproj" />
+  <Project Path="TopicRecordName/TopicRecordName.csproj" />
+</Solution>

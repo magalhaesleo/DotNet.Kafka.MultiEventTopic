@@ -1,0 +1,26 @@
+{
+  "type": "record",
+  "name": "AccountBlocked",
+  "namespace": "DotNet.Kafka.MultiEventTopic",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string"
+    },
+    {
+      "name": "accountId",
+      "type": "string"
+    },
+    {
+      "name": "reason",
+      "type": "string"
+    },
+    {
+      "name": "occurredAt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    }
+  ]
+}
