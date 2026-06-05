@@ -1,0 +1,44 @@
+﻿{
+  "type": "record",
+  "name": "BankAccountEvent",
+  "namespace": "com.github.magalhaesleo",
+  "fields": [
+    {
+      "name": "accountId",
+      "type": "string"
+    },
+    {
+      "name": "operation",
+      "type": [
+        {
+          "type": "record",
+          "name": "DepositOperation",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "double"
+            },
+            {
+              "name": "source",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "TransferOperation",
+          "fields": [
+            {
+              "name": "amount",
+              "type": "double"
+            },
+            {
+              "name": "destinationAccountId",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
