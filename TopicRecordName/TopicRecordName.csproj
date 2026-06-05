@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Confluent.SchemaRegistry.Serdes.Avro" Version="2.14.2" />
+      <PackageReference Include="YCherkes.SchemaRegistry.Serdes.Avro" Version="1.0.5" />
+    </ItemGroup>
+
 </Project>

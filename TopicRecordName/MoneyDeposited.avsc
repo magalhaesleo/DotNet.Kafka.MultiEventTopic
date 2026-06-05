@@ -1,7 +1,7 @@
 ﻿{
   "type": "record",
   "name": "MoneyDeposited",
-  "namespace": "com.github.magalhaesleo",
+  "namespace": "DotNet.Kafka.MultiEventTopic",
   "fields": [
     {
       "name": "eventId",
