@@ -9,9 +9,9 @@ The examples use the following event types:
 * `MoneyWithdrawn`
 * `AccountBlocked`
 
-Each event is defined as an independent Avro schema and published to the same Kafka topic.
+Each event is published to the same Kafka topic using `accountId` as the Kafka message key.
 
-## Partition Key
+## Partition key
 
 Messages are produced using `accountId` as the Kafka message key.
 
@@ -21,9 +21,9 @@ Using a consistent partition key ensures that all events for a given account are
 
 ### EnvelopePattern
 
-Uses an Avro union type to represent multiple event types within a single schema.
+Uses a wrapper schema named `BankAccountEvent` with a polymorphic `operation` field.
 
-This approach is supported by the Confluent .NET serializer and deserializer.
+The `operation` field is an Avro union, so the serializer writes the concrete operation dynamically according to the event type while keeping one topic subject in Schema Registry (`multi-event-topic-envelope-pattern-value`).
 
 ### TopicRecordName
 
@@ -32,6 +32,12 @@ Uses the `TopicRecordNameStrategy` subject naming strategy, allowing multiple in
 This example uses the `multi-schema-avro-deserializer` library to deserialize messages into their corresponding Avro types:
 
 https://github.com/ycherkes/multi-schema-avro-deserializer
+
+### AvroUnion
+
+Uses a root-level Avro union schema registered for the topic value subject (`bank-events-root-union-schema-value`).
+
+The union references the independent event schemas and the .NET producer/consumer use `GenericRecord` with the standard Confluent Avro serializer and deserializer. The consumer switches on the record schema name to handle each event type.
 
 ## Prerequisites
 
@@ -44,6 +50,8 @@ https://github.com/ycherkes/multi-schema-avro-deserializer
 ```bash
 docker compose up -d
 ```
+
+The Compose setup starts Kafka, Schema Registry, Kafka UI, and a schema registration container that registers the schemas used by all examples.
 
 Kafka UI:
 
@@ -64,6 +72,13 @@ dotnet run
 
 ```bash
 cd TopicRecordName
+dotnet run
+```
+
+### AvroUnion
+
+```bash
+cd AvroUnion
 dotnet run
 ```
 

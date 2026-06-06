@@ -10,7 +10,9 @@
   <Folder Name="/Solution Itens/">
     <File Path="compose.yaml" />
     <File Path="README.md" />
+    <File Path="register-schemas.sh" />
   </Folder>
+  <Project Path="AvroUnion/AvroUnion.csproj" />
   <Project Path="EnvelopePattern/EnvelopePattern.csproj" />
   <Project Path="TopicRecordName/TopicRecordName.csproj" />
 </Solution>
