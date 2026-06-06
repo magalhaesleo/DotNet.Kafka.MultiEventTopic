@@ -1,7 +1,7 @@
-﻿using Confluent.Kafka;
+using Confluent.Kafka;
 using DotNet.Kafka.MultiEventTopic;
 
-namespace EmbeddedUnionType;
+namespace EnvelopePattern;
 
 public static class Messages
 {

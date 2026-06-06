@@ -19,8 +19,8 @@ register_schema "/schemas/AccountOpened.avsc" "multi-event-topic-record-name-str
 register_schema "/schemas/MoneyDeposited.avsc" "multi-event-topic-record-name-strategy-DotNet.Kafka.MultiEventTopic.MoneyDeposited"
 register_schema "/schemas/MoneyWithdrawn.avsc" "multi-event-topic-record-name-strategy-DotNet.Kafka.MultiEventTopic.MoneyWithdrawn"
 
-# register EmbeddedUnionType schema
-register_schema "/schemas/BankAccountEvent.avsc" "multi-event-topic-embedded-union-type-value"
+# register EnvelopePattern schema
+register_schema "/schemas/BankAccountEvent.avsc" "multi-event-topic-envelope-pattern-value"
 
 # root union schemas
 register_schema "/schemas/AccountBlocked.avsc" "DotNet.Kafka.MultiEventTopic.AccountBlocked"

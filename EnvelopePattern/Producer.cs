@@ -1,9 +1,9 @@
-﻿using Confluent.Kafka;
+using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Confluent.SchemaRegistry.Serdes;
 using DotNet.Kafka.MultiEventTopic;
 
-namespace EmbeddedUnionType;
+namespace EnvelopePattern;
 
 public static class Producer
 {

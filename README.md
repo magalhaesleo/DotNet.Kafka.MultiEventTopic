@@ -19,7 +19,7 @@ Using a consistent partition key ensures that all events for a given account are
 
 ## Projects
 
-### EmbeddedUnionType
+### EnvelopePattern
 
 Uses an Avro union type to represent multiple event types within a single schema.
 
@@ -53,10 +53,10 @@ http://localhost:8080
 
 ## Running the examples
 
-### EmbeddedUnionType
+### EnvelopePattern
 
 ```bash
-cd EmbeddedUnionType
+cd EnvelopePattern
 dotnet run
 ```
 

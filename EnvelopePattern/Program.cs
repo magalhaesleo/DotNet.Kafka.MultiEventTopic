@@ -1,4 +1,4 @@
-﻿namespace EmbeddedUnionType;
+namespace EnvelopePattern;
 
 public static class Program
 {
@@ -6,7 +6,7 @@ public static class Program
     {
         const string bootstrapServers = "localhost:9092";
         const string schemaRegistryUrl = "http://localhost:8081";
-        const string topicName = "multi-event-topic-embedded-union-type";
+        const string topicName = "multi-event-topic-envelope-pattern";
 
         Console.WriteLine("Stating Kafka Producer and Consumer...");
         Console.WriteLine("Press Ctrl+C to stop the application.");

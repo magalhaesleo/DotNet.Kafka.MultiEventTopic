@@ -11,6 +11,6 @@
     <File Path="compose.yaml" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="EmbeddedUnionType/EmbeddedUnionType.csproj" />
+  <Project Path="EnvelopePattern/EnvelopePattern.csproj" />
   <Project Path="TopicRecordName/TopicRecordName.csproj" />
 </Solution>
