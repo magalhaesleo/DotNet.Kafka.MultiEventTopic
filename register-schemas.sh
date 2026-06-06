@@ -30,6 +30,7 @@ register_schema "/schemas/MoneyWithdrawn.avsc" "DotNet.Kafka.MultiEventTopic.Mon
 jq -n \
   --rawfile schema /schemas/RootUnion.avsc \
   '{
+    schemaType: "AVRO",
     schema: $schema,
     references: [
       {
