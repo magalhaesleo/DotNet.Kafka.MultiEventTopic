@@ -1,0 +1,6 @@
+[
+  "DotNet.Kafka.MultiEventTopic.AccountBlocked",
+  "DotNet.Kafka.MultiEventTopic.AccountOpened",
+  "DotNet.Kafka.MultiEventTopic.MoneyDeposited",
+  "DotNet.Kafka.MultiEventTopic.MoneyWithdrawn"
+]

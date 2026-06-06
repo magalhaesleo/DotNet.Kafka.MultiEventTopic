@@ -1,4 +1,12 @@
 <Solution>
+  <Folder Name="/Schemas/">
+    <File Path="Schemas/AccountBlocked.avsc" />
+    <File Path="Schemas/AccountOpened.avsc" />
+    <File Path="Schemas/AllTypesUnion" />
+    <File Path="Schemas/BankAccountEvent.avsc" />
+    <File Path="Schemas/MoneyDeposited.avsc" />
+    <File Path="Schemas/MoneyWithdrawn.avsc" />
+  </Folder>
   <Folder Name="/Solution Itens/">
     <File Path="compose.yaml" />
     <File Path="README.md" />
