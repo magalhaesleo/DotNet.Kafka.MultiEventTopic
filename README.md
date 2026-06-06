@@ -9,8 +9,6 @@ The examples use the following event types:
 * `MoneyWithdrawn`
 * `AccountBlocked`
 
-Each event is published to the same Kafka topic using `accountId` as the Kafka message key.
-
 ## Partition key
 
 Messages are produced using `accountId` as the Kafka message key.
