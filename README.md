@@ -25,9 +25,11 @@ The `operation` field is an Avro union, so the serializer writes the concrete op
 
 ### TopicRecordName
 
-Uses the `TopicRecordNameStrategy` subject naming strategy, allowing multiple independent schemas to be associated with the same topic.
+Uses the `TopicRecordNameStrategy` subject naming strategy, which allows multiple Avro schemas to coexist within the same Kafka topic while remaining independently versioned in Schema Registry.
 
-This example uses the `multi-schema-avro-deserializer` library to deserialize messages into their corresponding Avro types:
+To deserialize messages into their corresponding Avro types, this example uses the `multi-schema-avro-deserializer` library. The library resolves the schema associated with each message and maps it to the appropriate generated Avro class, enabling consumers to handle multiple message types from a single topic.
+
+Repository:
 
 https://github.com/ycherkes/multi-schema-avro-deserializer
 
